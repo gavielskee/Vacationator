@@ -10,27 +10,15 @@ Request.init(
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
-    }
-  },
-  {
-    user_id: {
-      type: DataTypes.STRING,
-      allowNull: false
-    }
-  },
-  {
+    },
     date: {
       type: DataTypes.STRING,
       allowNull: false 
-    }
-  },
-  {
+    },
     reason: {
       type: DataTypes.STRING,
       allowNull: false
-    }
-  },
-  {
+    },
     isApproved: {
       type: DataTypes.BOOLEAN,
       allowNull: false
@@ -40,7 +28,7 @@ Request.init(
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: 'posts',
+    modelName: 'request',
   }
 );
 
