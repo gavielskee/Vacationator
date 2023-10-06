@@ -2,7 +2,7 @@ console.log('hello');
 
 const loginFormHandler = async (event) => {
     event.preventDefault();
-  console.log('hello');
+  console.log('hellkjlkjlkjlkjlo');
     // Collect values from the login form
     const email = document.querySelector('#email-login').value.trim();
     const password = document.querySelector('#password-login').value.trim();
@@ -18,6 +18,7 @@ const loginFormHandler = async (event) => {
       if (response.ok) {
         // If successful, redirect the browser to the profile page
         document.location.replace('/');
+       
       } else {
         alert(response.statusText);
       }
@@ -49,8 +50,10 @@ const loginFormHandler = async (event) => {
   document
     .querySelector('#submitButton')
     .addEventListener('click', loginFormHandler);
+
+  console.log('loginFormHandler is listening for clicks');
   
 //   document
 //     .querySelector('.signup-form')
-//     .addEventListener('submit', signupFormHandler);
+//     .addEventListener('submi', signupFormHandler);
   
