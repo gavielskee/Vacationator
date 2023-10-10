@@ -28,7 +28,8 @@ router.get('/admin', async (req, res) => {
   
     });
 
-    const retUsers = userData.map(post => post.get({ plain: true }))
+    const retUsers = userData.
+    map(post => post.get({ plain: true }))
     console.log(retUsers)
     res.render('admin',{retUsers,logged_in: req.session.logged_in});
   } catch (err) {
