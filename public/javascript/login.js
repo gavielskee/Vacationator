@@ -1,8 +1,7 @@
-console.log('hello');
+
 
 const loginFormHandler = async (event) => {
     event.preventDefault();
-  console.log('hellkjlkjlkjlkjlo');
     // Collect values from the login form
     const email = document.querySelector('#email-login').value.trim();
     const password = document.querySelector('#password-login').value.trim();
@@ -25,35 +24,36 @@ const loginFormHandler = async (event) => {
     }
   };
   
-//   const signupFormHandler = async (event) => {
-//     event.preventDefault();
+  const signupFormHandler = async (event) => {
+    event.preventDefault();
   
-//     const name = document.querySelector('#name-signup').value.trim();
-//     const email = document.querySelector('#email-signup').value.trim();
-//     const password = document.querySelector('#password-signup').value.trim();
+    const user = document.querySelector('#name-signup').value.trim();
+    const email = document.querySelector('#email-signup').value.trim();
+    const password = document.querySelector('#password-signup').value.trim();
+    const isAdmin = false
   
-//     if (name && email && password) {
-//       const response = await fetch('/api/user', {
-//         method: 'POST',
-//         body: JSON.stringify({ name, email, password }),
-//         headers: { 'Content-Type': 'application/json' },
-//       });
+    if (user && email && password) {
+      const response = await fetch('/api/user', {
+        method: 'POST',
+        body: JSON.stringify({ user, email, password, isAdmin }),
+        headers: { 'Content-Type': 'application/json' },
+      });
   
-//       if (response.ok) {
-//         document.location.replace('/profile');
-//       } else {
-//         alert(response.statusText);
-//       }
-//     }
-//   };
+      if (response.ok) {
+        document.location.replace('/admin');
+      } else {
+        alert(response.statusText);
+      }
+    }
+  };
+  
+  // document
+  //   .querySelector('.submitButton')
+  //   .addEventListener('click', loginFormHandler);
+
+  // console.log('loginFormHandler is listening for clicks');
   
   document
-    .querySelector('#submitButton')
-    .addEventListener('click', loginFormHandler);
-
-  console.log('loginFormHandler is listening for clicks');
-  
-//   document
-//     .querySelector('.signup-form')
-//     .addEventListener('submi', signupFormHandler);
+    .querySelector('.signupbutton')
+    .addEventListener('click', signupFormHandler);
   
