@@ -2,7 +2,7 @@ const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
 class Request extends Model {}
-
+//button functionality for submit request
 Request.init(
   {
     id: {

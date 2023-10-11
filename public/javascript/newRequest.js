@@ -3,7 +3,7 @@ const newPostHandler = async (event) => {
 
   const text = document.querySelector('#newposttext').value.trim();
 
-
+//need to change this for requests
   if (text) {
     console.log("posted")
     const response = await fetch(`/api/posts`, {
