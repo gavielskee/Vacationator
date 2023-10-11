@@ -11,9 +11,13 @@ Request.init(
       primaryKey: true,
       autoIncrement: true
     },
-    date: {
+    startDate: {
       type: DataTypes.STRING,
       allowNull: false 
+    },
+    endDate: {
+      type: DataTypes.STRING,
+      allowNull: false
     },
     reason: {
       type: DataTypes.STRING,
