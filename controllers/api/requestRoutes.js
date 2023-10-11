@@ -1,23 +1,35 @@
 const router = require('express').Router();
 const { Request } = require('../../models');
-const withAuth = require('../../utils/auth');
 
-
-// create new request with userid
-router.post("/", withAuth, async (req, res) => {
+// GET all drivers
+router.get('/', async (req, res) => {
   try {
-    const newPost = await Request.create(
-      {
-        // what are these 3 dot!
-       ...req.body, user_id: req.session.user_id,}
-      
-    
-    );
-    res.status(200).json(newPost);
+    const reqData = await Request.findAll({
+  
+    });
+    res.status(200).json(reqData);
   } catch (err) {
     res.status(500).json(err);
   }
 });
+
+router.post("/", async (req, res) => {
+  try {
+    const newRequest = await Request.create({
+      ...req.body,
+      user_id: req.session.user_id,
+    });
+    console.log(newRequest);
+    res.status(200).json(newRequest);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+
+
+
+
 
 
 module.exports = router;
