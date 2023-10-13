@@ -4,7 +4,15 @@ const signupFormHandler = async (event) => {
     const user = document.querySelector('#name-signup').value.trim();
     const email = document.querySelector('#email-signup').value.trim();
     const password = document.querySelector('#password-signup').value.trim();
-    const isAdmin = false
+    //kevin gets a cookie
+    let isAdmin = ""
+    if (document.querySelector('#is-admin').value == "on") {
+      isAdmin = true
+    }
+    else{
+      isAdmin = false
+    }
+    
   
     if (user && email && password) {
       const response = await fetch('/api/user', {

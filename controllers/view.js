@@ -2,21 +2,22 @@ const router = require('express').Router();
 const { where } = require('sequelize');
 const { User, Request } = require('../models');
 const withAuth = require('../utils/auth');
+const isAdmin  = require('../utils/admin')
 
 // router.get('/admin', async (req, res) => {
 //     res.render('admin')
 //   });
 
-  router.get('/login', async (req, res) => {
+  router.get('/login',  async (req, res) => {
     res.render('login')
   });
 
-  router.get('/request', async (req, res) => {
+  router.get('/request', withAuth, async (req, res) => {
     res.render('requests')
   });
 
   //route to new-user page
-  router.get('/newuser', async (req, res) => {
+  router.get('/newuser', withAuth, async (req, res) => {
     res.render('newuser')
   });
 
@@ -32,12 +33,12 @@ const withAuth = require('../utils/auth');
 
 
   //route to home
-   router.get("/", async (req, res) => {
+   router.get("/", withAuth, async (req, res) => {
 
     try{
       const userRequest = await Request.findAll({
         include: [{ model: User }],
-        where: {user_id: 7},
+        where: {user_id: req.session.user_id},
       });
 
       console.log(userRequest)
@@ -51,7 +52,24 @@ const withAuth = require('../utils/auth');
     }
   });
 
+//route for approvals
+router.get("/approve", isAdmin, async (req, res) => {
 
+  try{
+    const userRequest = await Request.findAll({
+      include: [{ model: User }],
+    });
+
+    console.log(userRequest)
+    const usrReq = userRequest.map(post => post.get({ plain: true }))
+    console.log(usrReq)
+    res.render('approve', {usrReq,logged_in: req.session.logged_in});
+
+  }catch (err) {
+    res.status(500).json(err);
+    console.log
+  }
+});
 
 
 
@@ -60,7 +78,7 @@ const withAuth = require('../utils/auth');
   
 
     // GET all users for admin page
-router.get('/admin', async (req, res) => {
+router.get('/admin', isAdmin, async (req, res) => {
   try {
     const userData = 
     await User.findAll({

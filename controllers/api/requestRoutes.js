@@ -1,8 +1,9 @@
 const router = require('express').Router();
 const { Request } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 // GET all drivers
-router.get('/', async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
   try {
     const reqData = await Request.findAll({
   
@@ -13,7 +14,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", withAuth, async (req, res) => {
   console.log(req.body)
   try {
     const newRequest = await Request.create({

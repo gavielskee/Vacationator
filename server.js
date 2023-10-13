@@ -20,7 +20,7 @@ const app = express();
 const hbs = exphbs.create({ helpers });
 
 const sess = {
-  secret: 'Super secret secret',
+  secret: 'proccess.env.SECRET',
   cookie: {
     maxAge: 300000,
     httpOnly: true,

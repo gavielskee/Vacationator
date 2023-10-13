@@ -1,0 +1,46 @@
+{{#each usrReq as |users|}}
+
+
+<h2>Request by {{user.user}}</h2>
+<div style="width: 75%;">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Reason: {{reason}}</li>
+    <li class="list-group-item">Admin for Approval: {{isAdmin}}</li>
+    <li class="list-group-item">Start Date:   {{startDate}}</li>
+    <li class="list-group-item">End Date:   {{endDate}}</li>
+    <li class="list-group-item">Created At:   {{createdAt}}</li>
+    <li class="list-group-item fw-bold">Approval Status:   {{isApproved}}</li>
+  </ul>
+</div>
+<button id="approved">Approved</button>
+<button id="denied">Denied</button>
+<hr>
+
+
+
+
+  {{/each}}
+
+
+
+{{!-- <h2>User #{{id}}</h2> --}}
+
+
+
+
+
+
+
+{{!-- <div style="width: 75%;">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Username: {{user}}</li>
+    <li class="list-group-item">email:    {{email}}</li>
+    <li class="list-group-item">Admin:    {{isAdmin}}</li>
+  </ul>
+</div> --}}
+
+{{!-- <button class="update_user">Update User</button>
+<button data-id="{{id}}" class="delete_user">Delete User</button>
+
+<hr> --}}
+
