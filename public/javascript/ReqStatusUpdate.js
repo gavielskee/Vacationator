@@ -1,36 +1,48 @@
+let classname = ""
+let data = ""
+
 const requestStatus = async (event) => {
-    if (event.target.hasAttribute('data-id')) {
-      const id = event.target.getAttribute('data-id');
+    if (classname, data) {
+  const id = data;
 
 
-      let is_Approved = ""
-      if (document.querySelector('.approved') {
-        isApproved = true
+      if (classname == `approved`) {
+        is_Approved = true
       }
       else{
-        isApproved = false
+        is_Approved = false
       }
   
-      if (id, is_Approved) {
+      if (id) {
         console.log("posted");
         const response = await fetch(`/api/request/${id}`, {
           method: "put",
-          body: JSON.stringify({is_Approved}), 
+          body: JSON.stringify({is_Approved, classname}), 
           headers: {
             "Content-Type": "application/json",
           },
         });
-      });
+      }
   
       if (response.ok) {
-        document.location.replace('/approve');
+        document.location.reload('/approve');
       } else {
         alert('Failed to delete user');
       }
     }
   };
 
-  document
-  .querySelector('.statusup')
-  .addEventListener('click', requestStatus);
+
+
+  $(`button`).on(`click`, function() {
+    console.log("clicked")
+    classname = $(this).attr("class");
+    data = $(this).attr("data-id")
+console.log(data)
+    console.log(classname)
+    requestStatus()
+  });
+  
+  // document.querySelector('.statusApprove').addEventListener('click', requestStatus);
+  // document.querySelector('.statusDeny').addEventListener('click', requestStatus);
 

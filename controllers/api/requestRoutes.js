@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { Request } = require("../../models");
+const isAdmin = require("../../utils/admin");
 const withAuth = require("../../utils/auth");
 
 // GET all drivers
@@ -37,7 +38,7 @@ router.post("/", withAuth, async (req, res) => {
   }
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", isAdmin, async (req, res) => {
   console.log(req.body);
   try {
     await Request.update(
@@ -51,9 +52,16 @@ router.put("/:id", async (req, res) => {
       },
     
     );
-  
-
-res.status(200)
+    const sgMail = require("@sendgrid/mail");
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+    const approvalAlert = {
+      to: `${req.session.email}`,
+      from: "spworrell@gmail.com",
+      subject: `Request #${req.body.id} has been ${req.body.classname}`,
+      text: `Your vacation request has been ${req.body.classname}`,
+    };
+    sendMail.send(approvalAlert);
+res.status(200).json("updated")
 
 
   } catch (err) {

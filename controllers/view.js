@@ -43,7 +43,7 @@ const isAdmin  = require('../utils/admin')
   });
 
 //route for approvals
-router.get("/approve", isAdmin, async (req, res) => {
+router.get("/approve", async (req, res) => {
 
   try{
     const userRequest = await Request.findAll({
