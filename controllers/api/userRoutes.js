@@ -36,6 +36,7 @@ router.post('/login', async (req, res) => {
 
     req.session.save(() => {
       req.session.user_id = userData.id;
+      req.session.email = userData.email;
       req.session.logged_in = true;
       req.session.isAdmin = userData.isAdmin;
       
@@ -50,7 +51,7 @@ router.post('/login', async (req, res) => {
 router.post('/logout', withAuth, (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {
-      res.status(204).end();
+      res.render('login');
     });
   } else {
     res.status(404).end();

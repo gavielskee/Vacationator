@@ -17,14 +17,10 @@ const RequestHandler = async (event) => {
         },
       });
       console.log(response)
-  
-      // if (response.ok) {
-      //   document.location.replace("/dashboard");
-      // } else {
-      //   alert("Failed to create awesome vacation request");
-      // }
     }
   };
+
+  
   
   document.querySelector('#submitRq').addEventListener("click", RequestHandler);
 

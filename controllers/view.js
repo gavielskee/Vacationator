@@ -21,16 +21,6 @@ const isAdmin  = require('../utils/admin')
     res.render('newuser')
   });
 
-  // router.get("/dashboard", withAuth, async (req, res) => {
-  //   // Store the bookData in a variable once the promise is resolved.
-  //   const blogPosts = await Posts.findAll({
-  //     include: [{ model: Users }],
-  //     order: [["createdAt", "DESC"]],
-  //     where: {
-  //       user_id: req.session.user_id,
-  //     },
-  //   });
-
 
   //route to home
    router.get("/", withAuth, async (req, res) => {
