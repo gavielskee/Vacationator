@@ -3,6 +3,9 @@ const { Request } = require("../../models");
 const isAdmin = require("../../utils/admin");
 const withAuth = require("../../utils/auth");
 
+const sendMail = require("@sendgrid/mail");
+sendMail.setApiKey(process.env.SENDGRID_API_KEY);
+
 // GET all drivers
 router.get("/", withAuth, async (req, res) => {
   try {
@@ -22,8 +25,9 @@ router.post("/", withAuth, async (req, res) => {
       isApproved: false,
       user_id: 1,
     });
-    const sgMail = require("@sendgrid/mail");
-    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+  
+    res.status(200).json(newRequest);
+
     const newReqAlert = {
       to: `${req.session.email}`,
       from: "spworrell@gmail.com",
@@ -31,8 +35,8 @@ router.post("/", withAuth, async (req, res) => {
       text: `Request #${newRequest.dataValues.id} has been received.  Someone will respond to your request soon.`,
     };
     sendMail.send(newReqAlert);
-    console.log(newRequest.dataValues.id);
-    res.status(200).json(newRequest);
+   
+    
   } catch (err) {
     res.status(500).json(err);
   }
@@ -52,8 +56,7 @@ router.put("/:id", isAdmin, async (req, res) => {
       },
     
     );
-    const sgMail = require("@sendgrid/mail");
-    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
     const approvalAlert = {
       to: `${req.session.email}`,
       from: "spworrell@gmail.com",
