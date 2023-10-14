@@ -17,7 +17,7 @@ const requestStatus = async (event) => {
         console.log("posted");
         const response = await fetch(`/api/request/${id}`, {
           method: "put",
-          body: JSON.stringify({is_Approved, classname}), 
+          body: JSON.stringify({is_Approved, classname, id}), 
           headers: {
             "Content-Type": "application/json",
           },

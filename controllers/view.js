@@ -17,7 +17,7 @@ const isAdmin  = require('../utils/admin')
   });
 
   //route to new-user page
-  router.get('/newuser', withAuth, async (req, res) => {
+  router.get('/newuser', async (req, res) => {
     res.render('newuser')
   });
 
@@ -68,7 +68,7 @@ router.get("/approve", async (req, res) => {
   
 
     // GET all users for admin page
-router.get('/admin', isAdmin, async (req, res) => {
+router.get('/admin', async (req, res) => {
   try {
     const userData = 
     await User.findAll({

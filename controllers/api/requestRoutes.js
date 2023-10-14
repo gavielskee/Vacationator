@@ -45,7 +45,7 @@ router.post("/", withAuth, async (req, res) => {
 router.put("/:id", isAdmin, async (req, res) => {
   console.log(req.body);
   try {
-    await Request.update(
+    const approval = await Request.update(
       {
         isApproved: req.body.is_Approved,
       },
@@ -57,6 +57,8 @@ router.put("/:id", isAdmin, async (req, res) => {
     
     );
 
+      console.log(approval);
+      
     const approvalAlert = {
       to: `${req.session.email}`,
       from: "spworrell@gmail.com",
