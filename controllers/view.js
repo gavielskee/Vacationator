@@ -21,16 +21,6 @@ const isAdmin  = require('../utils/admin')
     res.render('newuser')
   });
 
-  // router.get("/dashboard", withAuth, async (req, res) => {
-  //   // Store the bookData in a variable once the promise is resolved.
-  //   const blogPosts = await Posts.findAll({
-  //     include: [{ model: Users }],
-  //     order: [["createdAt", "DESC"]],
-  //     where: {
-  //       user_id: req.session.user_id,
-  //     },
-  //   });
-
 
   //route to home
    router.get("/", withAuth, async (req, res) => {
@@ -44,7 +34,7 @@ const isAdmin  = require('../utils/admin')
       console.log(userRequest)
       const usrReq = userRequest.map(post => post.get({ plain: true }))
       console.log(usrReq)
-      res.render('home', {usrReq,logged_in: req.session.logged_in});
+      res.render('home', {usrReq,logged_in: req.session.logged_in, isAdmin: req.session.isAdmin });
 
     }catch (err) {
       res.status(500).json(err);
@@ -53,7 +43,7 @@ const isAdmin  = require('../utils/admin')
   });
 
 //route for approvals
-router.get("/approve", isAdmin, async (req, res) => {
+router.get("/approve", async (req, res) => {
 
   try{
     const userRequest = await Request.findAll({
@@ -63,7 +53,7 @@ router.get("/approve", isAdmin, async (req, res) => {
     console.log(userRequest)
     const usrReq = userRequest.map(post => post.get({ plain: true }))
     console.log(usrReq)
-    res.render('approve', {usrReq,logged_in: req.session.logged_in});
+    res.render('approve', {usrReq,logged_in: req.session.logged_in, isAdmin: req.session.isAdmin});
 
   }catch (err) {
     res.status(500).json(err);
@@ -88,7 +78,7 @@ router.get('/admin', isAdmin, async (req, res) => {
     const retUsers = userData.
     map(post => post.get({ plain: true }))
     console.log(retUsers)
-    res.render('admin',{retUsers,logged_in: req.session.logged_in});
+    res.render('admin',{retUsers,logged_in: req.session.logged_in, isAdmin: req.session.isAdmin});
 
   } catch (err) {
     
