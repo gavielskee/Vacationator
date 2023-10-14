@@ -9,15 +9,24 @@
     <li class="list-group-item">Start Date:   {{startDate}}</li>
     <li class="list-group-item">End Date:   {{endDate}}</li>
     <li class="list-group-item">Created At:   {{createdAt}}</li>
-    <li class="list-group-item fw-bold">Approval Status:   {{isApproved}}</li>
+{{#if isApproved}}
+    <li class="list-group-item fw-bold">Approved</li>
+    {{else}}
+    <li class="list-group-item fw-bold">DENIED!</li>
+{{/if}}
+
+
+
+
+
   </ul>
 </div>
 
 
 
 
-<button class="approved" data-id="{{id}}">Approved</button>
-<button class="denied" data-id="{{id}}">Denied</button>
+<button onclick="window.location.reload()" class= "approved" data-id="{{id}}">Approved</button>
+<button onclick="window.location.reload()" class="denied" data-id="{{id}}">Denied</button>
 
 
 
