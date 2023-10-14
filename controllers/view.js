@@ -34,7 +34,7 @@ const isAdmin  = require('../utils/admin')
       console.log(userRequest)
       const usrReq = userRequest.map(post => post.get({ plain: true }))
       console.log(usrReq)
-      res.render('home', {usrReq,logged_in: req.session.logged_in});
+      res.render('home', {usrReq,logged_in: req.session.logged_in, isAdmin: req.session.isAdmin });
 
     }catch (err) {
       res.status(500).json(err);
@@ -53,7 +53,7 @@ router.get("/approve", async (req, res) => {
     console.log(userRequest)
     const usrReq = userRequest.map(post => post.get({ plain: true }))
     console.log(usrReq)
-    res.render('approve', {usrReq,logged_in: req.session.logged_in});
+    res.render('approve', {usrReq,logged_in: req.session.logged_in, isAdmin: req.session.isAdmin});
 
   }catch (err) {
     res.status(500).json(err);
@@ -78,7 +78,7 @@ router.get('/admin', isAdmin, async (req, res) => {
     const retUsers = userData.
     map(post => post.get({ plain: true }))
     console.log(retUsers)
-    res.render('admin',{retUsers,logged_in: req.session.logged_in});
+    res.render('admin',{retUsers,logged_in: req.session.logged_in, isAdmin: req.session.isAdmin});
 
   } catch (err) {
     
