@@ -1,7 +1,8 @@
+let id = ""
+
+
 const delButtonHandler = async (event) => {
-    if (event.target.hasAttribute('data-id')) {
-      const id = event.target.getAttribute('data-id');
-  
+    if (id) {
       const response = await fetch(`/api/user/${id}`, {
         method: 'DELETE',
       });
@@ -14,6 +15,14 @@ const delButtonHandler = async (event) => {
     }
   };
 
-  document
-  .querySelector('.delete_user')
-  .addEventListener('click', delButtonHandler);
+
+  $(`button`).on(`click`, function() {
+    console.log("clicked")
+    id = $(this).attr("data-id")
+    delButtonHandler()
+  });
+
+  
+  // document
+  // .querySelector('.delete_user')
+  // .addEventListener('click', delButtonHandler);

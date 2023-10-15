@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { User } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-// GET all drivers
+
 router.get('/', withAuth, async (req, res) => {
   try {
     const userData = await User.findAll({
@@ -73,6 +73,27 @@ router.post('/', async (req, res) => {
     res.status(400).json(err);
   }
 });
+
+// Delete User
+router.delete('/:id', async (req, res) => {
+  try {
+    const projectData = await User.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+
+    if (!projectData) {
+      res.status(404).json({ message: 'No userfound with this id!' });
+      return;
+    }
+
+    res.status(200).json(projectData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 
 
 
