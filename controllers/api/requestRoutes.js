@@ -23,7 +23,7 @@ router.post("/", withAuth, async (req, res) => {
     const newRequest = await Request.create({
       ...req.body,
       isApproved: false,
-      user_id: 1,
+      user_id: req.session.user_id,
     });
   
     res.status(200).json(newRequest);
