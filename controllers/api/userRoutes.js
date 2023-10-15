@@ -59,7 +59,7 @@ router.post('/logout', withAuth, (req, res) => {
   }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', isAdmin, async (req, res) => {
   try {
     const userData = await User.create(req.body);
 
@@ -75,7 +75,7 @@ router.post('/', async (req, res) => {
 });
 
 // Delete User
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', isAdmin, async (req, res) => {
   try {
     const projectData = await User.destroy({
       where: {
