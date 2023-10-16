@@ -6,7 +6,7 @@ const withAuth = require("../../utils/auth");
 const sendMail = require("@sendgrid/mail");
 sendMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-// GET all drivers
+
 router.get("/", withAuth, async (req, res) => {
   try {
     const reqData = await Request.findAll({});
@@ -16,6 +16,8 @@ router.get("/", withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+// POST command to post new requests to system
 
 router.post("/", withAuth, async (req, res) => {
   console.log(req.body);
@@ -41,6 +43,8 @@ router.post("/", withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+// PUT Command to update request status
 
 router.put("/:id", isAdmin, async (req, res) => {
   console.log(req.body);
