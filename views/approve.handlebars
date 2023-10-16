@@ -12,7 +12,7 @@
 {{#if isApproved}}
     <li class="list-group-item fw-bold">Approved</li>
     {{else}}
-    <li class="list-group-item fw-bold">DENIED!</li>
+    <li class="list-group-item fw-bold">Not approved</li>
 {{/if}}
 
 
@@ -26,7 +26,7 @@
 
 
 <button onclick="window.location.reload()" class= "approved" data-id="{{id}}">Approved</button>
-<button onclick="window.location.reload()" class="denied" data-id="{{id}}">Denied</button>
+<button onclick="window.location.reload()" class="denied" data-id="{{id}}">Not approved</button>
 
 
 

@@ -15,6 +15,7 @@ const newPostHandler = async (event) => {
     });
 
    if (response.ok) {
+    alert("Request Submitted")
       document.location.replace('/');
     } else {
       alert('Failed to create post');

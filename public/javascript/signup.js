@@ -5,13 +5,13 @@ const signupFormHandler = async (event) => {
     const email = document.querySelector('#email-signup').value.trim();
     const password = document.querySelector('#password-signup').value.trim();
     //kevin gets a cookie
-    let isAdmin = ""
-    if (document.querySelector('#is-admin').value == "on") {
+    let isAdmin = document.querySelector('#is-admin').value
+    if (document.querySelector('#is-admin').value ==  'on') {
       isAdmin = true
     }
     else{
       isAdmin = false
-    }
+    };
     
   
     if (user && email && password) {

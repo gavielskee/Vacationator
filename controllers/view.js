@@ -13,8 +13,10 @@ const isAdmin  = require('../utils/admin')
   });
 
   router.get('/request', withAuth, async (req, res) => {
-    res.render('requests')
+    res.render(`requests`, {logged_in: req.session.logged_in, isAdmin: req.session.isAdmin })
   });
+
+  
 
   //route to new-user page
   router.get('/newuser', async (req, res) => {
