@@ -1,3 +1,5 @@
+{{!-- Loop to show all requests, filtered by logged in user (Sessions) --}}
+
 {{#each usrReq as |users|}}
 
 
@@ -13,13 +15,15 @@
     {{#if isApproved}}
     <li class="list-group-item fw-bold">Approved</li>
     {{else}}
-    <li class="list-group-item fw-bold">DENIED!</li>
+    <li class="list-group-item fw-bold">Not Approved</li>
     {{/if}}
 
   </ul>
 </div>
 
 <hr>
+
+
 
 
 

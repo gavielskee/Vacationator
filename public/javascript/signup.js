@@ -1,3 +1,5 @@
+// ifunction to create new user/switch on signup page determines if the user is an admin
+
 const signupFormHandler = async (event) => {
   event.preventDefault();
 
@@ -12,24 +14,21 @@ const signupFormHandler = async (event) => {
     isAdmin = false;
   }
 
-console.log(document.querySelector("#is-admin").value)
-console.log(isAdmin)
 
-}
-//   if (user && email && password) {
-//     const response = await fetch("/api/user", {
-//       method: "POST",
-//       body: JSON.stringify({ user, email, password, isAdmin }),
-//       headers: { "Content-Type": "application/json" },
-//     });
+  if (user && email && password) {
+    const response = await fetch("/api/user", {
+      method: "POST",
+      body: JSON.stringify({ user, email, password, isAdmin }),
+      headers: { "Content-Type": "application/json" },
+    });
 
-//     if (response.ok) {
-//       document.location.replace("/admin");
-//     } else {
-//       alert(response.statusText);
-//     }
-//   }
-// };
+    if (response.ok) {
+      document.location.replace("/admin");
+    } else {
+      alert(response.statusText);
+    }
+  }
+};
 
 document
   .querySelector(".signupbutton")

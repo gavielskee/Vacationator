@@ -1,3 +1,5 @@
+// function to create new request in DB
+
 const RequestHandler = async (event) => {
     event.preventDefault();
   
