@@ -1,5 +1,5 @@
 const isAdmin = (req, res, next) => {
-// If the user is not logged in, redirect the request to the login route
+// If the user is not an admin, do not allow access
     if (!req.session.isAdmin) {
         res.redirect('/');
     } else {

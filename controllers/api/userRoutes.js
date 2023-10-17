@@ -3,6 +3,7 @@ const { User } = require('../../models');
 const withAuth = require('../../utils/auth');
 const isAdmin = require("../../utils/admin");
 
+// get all users from database
 router.get('/', withAuth, async (req, res) => {
   try {
     const userData = await User.findAll({
@@ -14,7 +15,7 @@ router.get('/', withAuth, async (req, res) => {
   }
 });
 
-
+// check for user in db to login to system/sets session information for admin, logged in, and user id.
 router.post('/login', async (req, res) => {
   try {
     const userData = await User.findOne({ where: { email: req.body.email } });
@@ -49,6 +50,7 @@ router.post('/login', async (req, res) => {
   }
 });
 
+//logout user form system
 router.post('/logout', withAuth, (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {
@@ -59,6 +61,7 @@ router.post('/logout', withAuth, (req, res) => {
   }
 });
 
+// create user in system, requires admin rights
 router.post('/', isAdmin, async (req, res) => {
   try {
     const userData = await User.create(req.body);
@@ -74,7 +77,8 @@ router.post('/', isAdmin, async (req, res) => {
   }
 });
 
-// Delete User
+
+// Delete User from system
 router.delete('/:id', isAdmin, async (req, res) => {
   try {
     const projectData = await User.destroy({

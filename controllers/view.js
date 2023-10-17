@@ -4,27 +4,28 @@ const { User, Request } = require('../models');
 const withAuth = require('../utils/auth');
 const isAdmin  = require('../utils/admin')
 
-// router.get('/admin', async (req, res) => {
-//     res.render('admin')
-//   });
 
+
+// route to login page in Handlebars
   router.get('/login',  async (req, res) => {
     res.render('login')
   });
 
+
+// route to new request page, req to logged in
   router.get('/request', withAuth, async (req, res) => {
     res.render(`requests`, {logged_in: req.session.logged_in, isAdmin: req.session.isAdmin })
   });
 
   
 
-  //route to new-user page
-  router.get('/newuser', async (req, res) => {
+  //route to new-user page, req admin rights
+  router.get('/newuser', isAdmin, async (req, res) => {
     res.render('newuser')
   });
 
 
-  //route to home
+  //route to home to display all requests, req user to be logged in
    router.get("/", withAuth, async (req, res) => {
 
     try{
@@ -44,7 +45,7 @@ const isAdmin  = require('../utils/admin')
     }
   });
 
-//route for approvals
+//route for approvals page, req user to be admin
 router.get("/approve", isAdmin, async (req, res) => {
 
   try{
@@ -64,12 +65,7 @@ router.get("/approve", isAdmin, async (req, res) => {
 });
 
 
-
-
-   
-  
-
-    // GET all users for admin page
+    // GET all users for admin page, req user to be admin
 router.get('/admin', isAdmin, async (req, res) => {
   try {
     const userData = 

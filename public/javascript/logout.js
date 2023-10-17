@@ -1,3 +1,5 @@
+// function to log user out and destroy session
+
 const logout = async () => {
   const response = await fetch('/api/user/logout', {
     method: 'POST',
@@ -5,7 +7,7 @@ const logout = async () => {
   });
 
   if (response.ok) {
-    alert("Logout Sucessful")
+    // alert("Logout Sucessful")
     document.location.replace('/');
     
   } else {

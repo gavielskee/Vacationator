@@ -6,7 +6,7 @@ const withAuth = require("../../utils/auth");
 const sendMail = require("@sendgrid/mail");
 sendMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-
+// Get list of all requests in database
 router.get("/", withAuth, async (req, res) => {
   try {
     const reqData = await Request.findAll({});
@@ -17,8 +17,8 @@ router.get("/", withAuth, async (req, res) => {
   }
 });
 
-// POST command to post new requests to system
 
+// POST command to post new requests to system/Sends email based on req
 router.post("/", withAuth, async (req, res) => {
   console.log(req.body);
   try {
@@ -32,7 +32,7 @@ router.post("/", withAuth, async (req, res) => {
 
     const newReqAlert = {
       to: `${req.session.email}`,
-      from: "spworrell@gmail.com",
+      from: `${process.env.FROMMAIL}`,
       subject: `Request #${newRequest.dataValues.id} has been received`,
       text: `Request #${newRequest.dataValues.id} has been received.  Someone will respond to your request soon.`,
     };
@@ -44,8 +44,7 @@ router.post("/", withAuth, async (req, res) => {
   }
 });
 
-// PUT Command to update request status
-
+// PUT Command to update request status and sends email
 router.put("/:id", isAdmin, async (req, res) => {
   console.log(req.body);
   try {
@@ -65,7 +64,7 @@ router.put("/:id", isAdmin, async (req, res) => {
       
     const approvalAlert = {
       to: `${req.session.email}`,
-      from: "spworrell@gmail.com",
+      from: `${process.env.FROMMAIL}`,
       subject: `Request #${req.body.id} has been ${req.body.classname}`,
       text: `Your vacation request has been ${req.body.classname}`,
     };

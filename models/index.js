@@ -9,10 +9,5 @@ Request.belongsTo(User, {
 
 })
 
- //Post can have many comments
-//  Posts.hasMany(Comments, {
-//   foreignKey: 'post_id',
-// });
-
 
 module.exports = { User, Request };

@@ -1,3 +1,5 @@
+// function to update request status in database
+
 let classname = ""
 let data = ""
 
@@ -22,8 +24,8 @@ const requestStatus = async (event) => {
             "Content-Type": "application/json",
           },
         });
+      
       }
-  
       if (response.ok) {
         document.location.reload('/approve');
       } else {
@@ -33,7 +35,7 @@ const requestStatus = async (event) => {
   };
 
 
-
+// used Jquery to target all buttons created by #foreach in Handlebars
   $(`button`).on(`click`, function() {
     console.log("clicked")
     classname = $(this).attr("class");
@@ -43,6 +45,5 @@ console.log(data)
     requestStatus()
   });
   
-  // document.querySelector('.statusApprove').addEventListener('click', requestStatus);
-  // document.querySelector('.statusDeny').addEventListener('click', requestStatus);
+
 

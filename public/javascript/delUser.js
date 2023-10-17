@@ -1,6 +1,8 @@
 let id = ""
 
 
+// function to delete user from database based on ID
+
 const delButtonHandler = async (event) => {
     if (id) {
       const response = await fetch(`/api/user/${id}`, {
@@ -22,7 +24,3 @@ const delButtonHandler = async (event) => {
     delButtonHandler()
   });
 
-  
-  // document
-  // .querySelector('.delete_user')
-  // .addEventListener('click', delButtonHandler);
